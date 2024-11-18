@@ -6,7 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		21FBE6142CEAE9A6002927EE /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 21FBE6132CEAE9A6002927EE /* Config.xcconfig */; };
+		21FBE6172CEAEA67002927EE /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE6162CEAEA67002927EE /* KakaoSDK */; };
+		21FBE6192CEAEA67002927EE /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE6182CEAEA67002927EE /* KakaoSDKAuth */; };
+		21FBE61B2CEAEA67002927EE /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE61A2CEAEA67002927EE /* KakaoSDKCommon */; };
+		21FBE61D2CEAEA67002927EE /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE61C2CEAEA67002927EE /* KakaoSDKUser */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		21FBE6132CEAE9A6002927EE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		88B158952CEA422200BA1BD8 /* Irumso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Irumso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +45,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21FBE61D2CEAEA67002927EE /* KakaoSDKUser in Frameworks */,
+				21FBE6172CEAEA67002927EE /* KakaoSDK in Frameworks */,
+				21FBE61B2CEAEA67002927EE /* KakaoSDKCommon in Frameworks */,
+				21FBE6192CEAEA67002927EE /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +58,7 @@
 		88B1588C2CEA422200BA1BD8 = {
 			isa = PBXGroup;
 			children = (
+				21FBE6132CEAE9A6002927EE /* Config.xcconfig */,
 				88B158972CEA422200BA1BD8 /* Irumso */,
 				88B158962CEA422200BA1BD8 /* Products */,
 			);
@@ -78,6 +92,10 @@
 			);
 			name = Irumso;
 			packageProductDependencies = (
+				21FBE6162CEAEA67002927EE /* KakaoSDK */,
+				21FBE6182CEAEA67002927EE /* KakaoSDKAuth */,
+				21FBE61A2CEAEA67002927EE /* KakaoSDKCommon */,
+				21FBE61C2CEAEA67002927EE /* KakaoSDKUser */,
 			);
 			productName = Irumso;
 			productReference = 88B158952CEA422200BA1BD8 /* Irumso.app */;
@@ -107,6 +125,9 @@
 			);
 			mainGroup = 88B1588C2CEA422200BA1BD8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 88B158962CEA422200BA1BD8 /* Products */;
 			projectDirPath = "";
@@ -122,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21FBE6142CEAE9A6002927EE /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +162,7 @@
 /* Begin XCBuildConfiguration section */
 		88B158A92CEA422400BA1BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21FBE6132CEAE9A6002927EE /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -149,7 +172,6 @@
 				INFOPLIST_FILE = Irumso/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -181,7 +203,6 @@
 				INFOPLIST_FILE = Irumso/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -204,6 +225,7 @@
 		};
 		88B158AB2CEA422400BA1BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21FBE6132CEAE9A6002927EE /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -343,6 +365,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21FBE6162CEAEA67002927EE /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		21FBE6182CEAEA67002927EE /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		21FBE61A2CEAEA67002927EE /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		21FBE61C2CEAEA67002927EE /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21FBE6152CEAEA67002927EE /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88B1588D2CEA422200BA1BD8 /* Project object */;
 }
