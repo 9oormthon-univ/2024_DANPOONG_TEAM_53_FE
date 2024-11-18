@@ -1,6 +1,0 @@
-framework module Pods_Irumso {
-  umbrella header "Pods-Irumso-umbrella.h"
-
-  export *
-  module * { export * }
-}
