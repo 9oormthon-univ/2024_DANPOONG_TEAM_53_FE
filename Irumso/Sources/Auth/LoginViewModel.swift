@@ -11,11 +11,16 @@ import KakaoSDKUser
 
 class LoginViewModel {
     
-    var kakaoToken: OAuthToken?
+    var kakaoToken: OAuthToken? {
+        didSet {
+            guard let kakaoToken = self.kakaoToken else { return }
+            //UserDefaults.standard.setValue(kakaoToken, forKey: "kakaoToken")
+        }
+    }
     var isLogin: Bool = false
     var name: String = ""
     var email: String = ""
-    var profile: URL = URL(string: "")!
+    var profile: URL? = URL(string: "")
     
     init() {
         
