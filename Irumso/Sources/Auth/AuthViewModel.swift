@@ -2,19 +2,26 @@
 //  AuthViewModel.swift
 //  Irumso
 //
-//  Created by dezxcvb on 11/18/24.
+//  Created by dezxcvb on 11/20/24.
 //
 
 import Foundation
 import KakaoSDKAuth
 import KakaoSDKCommon
 import KakaoSDKUser
-
+    
 final class AuthViewModel {
     @Published var isLogin: Bool = false
     
     init() {
         print("authVM init()")
+    }
+    
+    var kakaoToken: OAuthToken? {
+        didSet {
+            guard let kakaoToken = self.kakaoToken else { return }
+            //UserDefaults.standard.setValue(kakaoToken, forKey: "kakaoToken")
+        }
     }
     
     func loginWithKakaoTalkApp() async -> Bool {
