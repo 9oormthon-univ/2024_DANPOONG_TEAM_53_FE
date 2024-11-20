@@ -11,11 +11,11 @@ import SnapKit
 
 final class SignInVC: UIViewController {
     
+    
     private lazy var kakaoLogInButton = UIButton().then {
         $0.setImage(UIImage(named: "kakao_login_large_wide")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.imageView?.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(kakaoLogInButtonDidTapped), for: .touchUpInside)
-        
     }
     
     
