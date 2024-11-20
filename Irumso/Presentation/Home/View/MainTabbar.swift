@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabbar: UITabBarController {
+final class MainTabbar: UITabBarController {
     
     
     
@@ -29,12 +29,18 @@ extension MainTabbar {
         let appearanceTabbar = UITabBarAppearance()
         appearanceTabbar.configureWithOpaqueBackground()
         appearanceTabbar.backgroundColor = UIColor.white
+        appearanceTabbar.shadowColor = UIColor.lightGray
+
+        if #available(iOS 15.0, *) {
+            self.tabBar.scrollEdgeAppearance = appearanceTabbar
+        }
+            
         self.tabBar.standardAppearance = appearanceTabbar
         self.tabBar.tintColor = UIColor(named: "color1")
         self.tabBar.backgroundColor = .white
     }
     
-    func configureTabbarAttribute() {
+    private func configureTabbarAttribute() {
         let homeVC = self.createNavController(for: HomeVC(), title: "홈",
                                               image: UIImage(systemName: "house"),
                                               selectedImage: UIImage(systemName: "house.fill"))
