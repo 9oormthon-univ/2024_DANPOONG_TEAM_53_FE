@@ -19,7 +19,7 @@ final class SignInVC: UIViewController {
     }
     
     
-    private let loginViewModel = LoginViewModel()
+    private let loginViewModel = AuthViewModel()
     
     
     override func viewDidLoad() {
