@@ -19,3 +19,6 @@ struct Member: Codable {
     var accessToken: String
 }
 
+struct AddExampleRequest: Codable {
+    var exampleId: String
+}
