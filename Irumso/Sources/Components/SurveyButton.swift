@@ -84,20 +84,51 @@ class SurveyButton: UIButton {
         }
     }
 
+    
     private func selectButton() {
         self.isSelected = true
         self.backgroundColor = self.highlightedBackgroundColor
         self.layer.borderColor = self.highlightedBorderColor.cgColor
-        self.setTitleColor(self.highlightedTextColor, for: .normal)
+
+        if #available(iOS 15.0, *) {
+            var config = self.configuration ?? UIButton.Configuration.plain()
+            config.baseBackgroundColor = self.highlightedBackgroundColor
+            config.baseForegroundColor = self.highlightedTextColor
+            self.configuration = config
+        } else {
+            self.setTitleColor(self.highlightedTextColor, for: .normal)
+        }
     }
-    
+
     private func deselectButton() {
         self.isSelected = false
         self.backgroundColor = self.normalBackgroundColor
         self.layer.borderColor = self.normalBorderColor.cgColor
-        self.setTitleColor(self.normalTextColor, for: .normal)
+
+        if #available(iOS 15.0, *) {
+            var config = self.configuration ?? UIButton.Configuration.plain()
+            config.baseBackgroundColor = self.normalBackgroundColor
+            config.baseForegroundColor = self.normalTextColor
+            self.configuration = config
+        } else {
+            self.setTitleColor(self.normalTextColor, for: .normal)
+        }
     }
-    
+
+//    private func selectButton() {
+//        self.isSelected = true
+//        self.backgroundColor = self.highlightedBackgroundColor
+//        self.layer.borderColor = self.highlightedBorderColor.cgColor
+//        self.setTitleColor(self.highlightedTextColor, for: .normal)
+//    }
+//    
+//    private func deselectButton() {
+//        self.isSelected = false
+//        self.backgroundColor = self.normalBackgroundColor
+//        self.layer.borderColor = self.normalBorderColor.cgColor
+//        self.setTitleColor(self.normalTextColor, for: .normal)
+//    }
+//    
     func updateSelectionState(isSelected: Bool) {
         if isSelected {
             selectButton()
