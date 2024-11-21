@@ -114,21 +114,7 @@ class SurveyButton: UIButton {
             self.setTitleColor(self.normalTextColor, for: .normal)
         }
     }
-
-//    private func selectButton() {
-//        self.isSelected = true
-//        self.backgroundColor = self.highlightedBackgroundColor
-//        self.layer.borderColor = self.highlightedBorderColor.cgColor
-//        self.setTitleColor(self.highlightedTextColor, for: .normal)
-//    }
-//    
-//    private func deselectButton() {
-//        self.isSelected = false
-//        self.backgroundColor = self.normalBackgroundColor
-//        self.layer.borderColor = self.normalBorderColor.cgColor
-//        self.setTitleColor(self.normalTextColor, for: .normal)
-//    }
-//    
+    
     func updateSelectionState(isSelected: Bool) {
         if isSelected {
             selectButton()
