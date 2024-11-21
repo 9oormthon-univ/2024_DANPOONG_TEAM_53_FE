@@ -19,7 +19,8 @@ final class SignInVC: UIViewController {
     }
     
     
-    private let loginViewModel = AuthViewModel()
+
+    private let authViewModel = AuthViewModel()
     
     
     override func viewDidLoad() {
@@ -31,12 +32,12 @@ final class SignInVC: UIViewController {
     @objc func kakaoLogInButtonDidTapped() {
         print("Debug: \(#function)")
         // 카카오 로그인 시도
-        self.loginViewModel.kakaoLogin()
+        self.authViewModel.kakaoLogin()
         Task {
             // 로그인 완료 후 상태 확인
-            if self.loginViewModel.isLogin {
+            if self.authViewModel.isLogin {
                 print("로그인 성공!")
-                self.loginViewModel.getUserInfo()
+                self.authViewModel.getUserInfo()
                 
                 
                 // 필요하면 다음 화면으로 전환

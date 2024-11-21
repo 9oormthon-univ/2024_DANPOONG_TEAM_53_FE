@@ -17,12 +17,13 @@ final class AuthViewModel {
         print("authVM init()")
     }
     
-    var kakaoToken: OAuthToken? {
-        didSet {
-            //guard let kakaoToken = self.kakaoToken else { return }
-            //UserDefaults.standard.setValue(kakaoToken, forKey: "kakaoToken")
-        }
-    }
+
+//    var kakaoToken: OAuthToken? {
+//        didSet {
+//            guard let kakaoToken = self.kakaoToken else { return }
+//            //UserDefaults.standard.setValue(kakaoToken, forKey: "kakaoToken")
+//        }
+//    }
     
     func loginWithKakaoTalkApp() async -> Bool {
         await withCheckedContinuation { continuation in
