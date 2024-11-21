@@ -19,7 +19,7 @@ final class AuthViewModel {
     
     var kakaoToken: OAuthToken? {
         didSet {
-            guard let kakaoToken = self.kakaoToken else { return }
+            //guard let kakaoToken = self.kakaoToken else { return }
             //UserDefaults.standard.setValue(kakaoToken, forKey: "kakaoToken")
         }
     }
