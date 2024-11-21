@@ -18,7 +18,6 @@ final class CommunitySearchBar: UIView {
     }
     
     
-    
     private let searchPostTextField = UITextField().then {
         $0.placeholder = "게시글 검색"
         $0.font = UIFont.customFont(.goormSans500, size: 14)
