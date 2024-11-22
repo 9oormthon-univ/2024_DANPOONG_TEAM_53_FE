@@ -91,6 +91,9 @@ final class CommunityDetailVC: UIViewController {
         $0.register(CommentCell.self, forCellReuseIdentifier: CommentCell.reuseIdentifier)
     }
     
+    private lazy var commentWritingView: CommentTextField = CommentTextField()
+    
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +147,14 @@ extension CommunityDetailVC {
         
         self.view.addSubview(self.communityDetailScrollView)
         
+        self.view.addSubview(self.commentWritingView)
+        
         self.communityDetailScrollView.addSubview(self.communityContentView)
+        
+        self.commentWritingView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(100)
+        }
         
         self.communityDetailScrollView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
@@ -168,11 +178,11 @@ extension CommunityDetailVC {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
         }
-        
+         
         self.communityContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(self.communityDetailScrollView.snp.width)
-            $0.bottom.equalTo(self.commentTableView.snp.bottom).offset(30)
+            $0.bottom.equalTo(self.commentTableView.snp.bottom).offset(150)
             
         }
         
@@ -263,3 +273,32 @@ extension CommunityDetailVC {
 }
 
 
+
+
+import SwiftUI
+
+extension UIViewController {
+    private struct Preview: UIViewControllerRepresentable {
+        let viewController: UIViewController
+        
+        func makeUIViewController(context: Context) -> UIViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        }
+    }
+    
+    func toPreview() -> some View {
+        Preview(viewController: self)
+    }
+}
+
+
+import SwiftUI
+
+struct VCPreView: PreviewProvider {
+    static var previews: some View {
+        CommunityDetailVC().toPreview()
+    }
+}
