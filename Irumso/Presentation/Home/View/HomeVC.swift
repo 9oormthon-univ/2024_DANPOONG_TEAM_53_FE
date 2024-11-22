@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeVC: UIViewController {
     
-    private lazy var homeTableView: UITableView = UITableView(frame: .zero, style: .grouped).then {
+    private lazy var homeTableView: UITableView = UITableView(frame: .zero, style: .plain).then {
         $0.delegate = self
         $0.dataSource = self
         $0.separatorStyle = .none
@@ -27,6 +27,8 @@ final class HomeVC: UIViewController {
 }
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
@@ -106,6 +108,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    
 }
 
 
