@@ -88,7 +88,6 @@ final class CommunityDetailVC: UIViewController {
         $0.delegate = self
         $0.dataSource = self
         $0.isScrollEnabled = false
-        
         $0.register(CommentCell.self, forCellReuseIdentifier: CommentCell.reuseIdentifier)
     }
     
@@ -237,69 +236,30 @@ extension CommunityDetailVC {
             $0.leading.equalTo(self.communityContentView.snp.leading).offset(15)
             $0.trailing.equalTo(self.communityContentView.snp.trailing).offset(-15)
             $0.top.equalTo(self.commentCount.snp.bottom).offset(30)
-            $0.height.equalTo(0) // 초기 높이 설정
+            $0.height.equalTo(0)
         }
         
         
     }
-    func updateTableViewHeight() {
+    private func updateTableViewHeight() {
         self.commentTableView.reloadData()
-        self.commentTableView.layoutIfNeeded() // 테이블 뷰 레이아웃 강제 업데이트
-        
-        // 테이블 뷰의 콘텐츠 크기 얻기
-        let tableViewHeight = self.commentTableView.contentSize.height
-        print("Updated TableView height: \(tableViewHeight)")
-        
-        // 테이블 뷰 높이 업데이트
-        self.commentTableView.snp.updateConstraints {
-            $0.height.equalTo(tableViewHeight)
-        }
-        
-        // 커뮤니티 컨텐츠 뷰의 크기를 갱신
-        self.communityContentView.snp.updateConstraints {
-            $0.bottom.equalTo(self.commentTableView.snp.bottom).offset(30)
-        }
-        
-        self.view.layoutIfNeeded() // 뷰 전체 레이아웃 강제 업데이트
-//        self.commentTableView.reloadData()
-//        self.commentTableView.layoutIfNeeded() // 테이블 뷰 레이아웃 강제 업데이트
-//        
-//        let tableViewHeight = self.commentTableView.contentSize.height
-//        print("Updated TableView height: \(tableViewHeight)")
-//        
-//        self.commentTableView.snp.updateConstraints {
-//            $0.height.equalTo(tableViewHeight)
-//        }
-//        self.view.layoutIfNeeded() // 뷰 전체 레이아웃 강제 업데이트
-    }
-    
-}
 
+        DispatchQueue.main.async {
+            let tableViewHeight = self.commentTableView.contentSize.height
+            
+            self.commentTableView.snp.updateConstraints {
+                $0.height.equalTo(tableViewHeight)
+            }
+            
+            self.communityContentView.snp.updateConstraints {
+                $0.bottom.equalTo(self.commentTableView.snp.bottom).offset(30)
+            }
+            
+            self.view.layoutIfNeeded()
 
-import SwiftUI
-
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         }
     }
     
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
 }
 
 
-import SwiftUI
-
-struct VCPreView: PreviewProvider {
-    static var previews: some View {
-        CommunityDetailVC().toPreview()
-    }
-}

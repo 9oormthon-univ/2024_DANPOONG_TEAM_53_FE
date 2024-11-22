@@ -38,6 +38,12 @@ final class CommunityVC: UIViewController {
         self.configureCommunityVCUI()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.isTabBarHidden = false
+        
+    }
     @objc private func communityWriteButtonDidTapped() {
         print("Debug: \(#function)")
     }
@@ -57,6 +63,13 @@ extension CommunityVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let communityDetailVC = CommunityDetailVC()
+        
+        communityDetailVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(communityDetailVC, animated: true)
+        
+    }
     
 }
 
