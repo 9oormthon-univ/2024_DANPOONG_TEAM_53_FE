@@ -11,11 +11,11 @@ extension UIFont {
     static func customFont(_ name: CustomFontType, size: CGFloat) -> UIFont? {
         switch name {
         case .goormSans400:
-            return UIFont(name: "goorm-sans-regular", size: size)
+            return UIFont(name: "goorm-sans-regular.otf", size: size)
         case .goormSans500:
-            return UIFont(name: "goorm-sans-medium", size: size)
+            return UIFont(name: "goorm-sans-medium.otf", size: size)
         case .goormSans700:
-            return UIFont(name: "goorm-sans-bold", size: size)
+            return UIFont(name: "goorm-sans-bold.otf", size: size)
         }
     }
 }

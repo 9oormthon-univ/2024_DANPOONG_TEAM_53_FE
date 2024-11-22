@@ -30,13 +30,14 @@ final class CommunityDetailVC: UIViewController {
     
     private let communityTitleLabel = UILabel().then {
         $0.text = "코로나19 긴급 지원금 관련 질문"
-        $0.font = UIFont.customFont(.goormSans700, size: 30)
+        $0.font = UIFont.customFont(.goormSans700, size: 35)
         $0.textAlignment = .left
     }
     
     private let detailTextView = UITextView().then {
         $0.text = "코로나 19 긴급 지원금 관련해서 질문 드립니다. \n아래 이미지 첨부한데에서 어디로 들어가야 신청 가능한가요?"
-        $0.font = UIFont.customFont(.goormSans400, size: 20)
+        $0.isEditable = false
+        $0.font = UIFont.customFont(.goormSans500, size: 20)
     }
     
     private let communityImageView1 = UIImageView().then {
@@ -275,30 +276,3 @@ extension CommunityDetailVC {
 
 
 
-import SwiftUI
-
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-
-
-import SwiftUI
-
-struct VCPreView: PreviewProvider {
-    static var previews: some View {
-        CommunityDetailVC().toPreview()
-    }
-}
