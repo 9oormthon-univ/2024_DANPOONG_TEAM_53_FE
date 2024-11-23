@@ -22,24 +22,33 @@ final class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureHomeVCUI()
+        NotificationCenter.default.addObserver(self, selector: #selector(imageTappedHandler(notification:)), name: Notification.Name("ImageTappedNotification"), object: nil)
+        
     }
-
     
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("ImageTappedNotification"), object: nil)
+    }
     
     //MARK: - Actions
+    @objc func imageTappedHandler(notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let url = userInfo["url"] as? URL {
+            let webViewController = WebViewController(url: url)
+            navigationController?.pushViewController(webViewController, animated: true)
+        }
+    }
+    
     @objc func showDetailButtonDidTapped(_ sender: UIButton) {
-        print("Debug: \(#function)")
         switch sender.tag {
         case 1:
-            print("Debug : ByLike")
             let serviceListVC = ServiceListVC()
             serviceListVC.title = "많이 본 지원금 정보"
             serviceListVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(serviceListVC, animated: true)
             
         case 2:
-            print("Debug : ByView")
             let serviceListVC = ServiceListVC()
             serviceListVC.title = "관심을 많이 가진 지원금 정보"
             serviceListVC.hidesBottomBarWhenPushed = true
@@ -91,7 +100,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cell.configureHomeTVCellForFirstSection()
-        
+            
             return cell
         case 1:
             cell.configureHomeTVCell()
@@ -124,17 +133,17 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             homeTableViewSectionHeader.showDetailButton.addTarget(self, action: #selector(showDetailButtonDidTapped(_:)), for: .touchUpInside)
             homeTableViewSectionHeader.sectionTitleLabel.text = "현재 사람들이 많이 본 지원금 정보"
             return homeTableViewSectionHeader
-
+            
         case 2:
             homeTableViewSectionHeader.showDetailButton.tag = 2
             homeTableViewSectionHeader.showDetailButton.addTarget(self, action: #selector(showDetailButtonDidTapped(_:)), for: .touchUpInside)
             homeTableViewSectionHeader.sectionTitleLabel.text = "현재 사람들이 관심을 준 지원금 정보"
             return homeTableViewSectionHeader
-
+            
         default:
             homeTableViewSectionHeader.sectionTitleLabel.text = ""
             return homeTableViewSectionHeader
-
+            
         }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

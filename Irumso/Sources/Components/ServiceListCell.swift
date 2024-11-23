@@ -145,4 +145,15 @@ extension ServiceListCell {
         
         
     }
+    func updateUIForRecommendCell() {
+        self.eyeImageView.isHidden = true
+        self.viewCount.isHidden = true
+        self.baseView.backgroundColor = UIColor(hexCode: "D0E4CE")
+        self.heartCount.isHidden = true
+        self.heartImageView.snp.remakeConstraints {
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.top.equalToSuperview().offset(10)
+            $0.height.width.equalTo(15)
+        }
+    }
 }

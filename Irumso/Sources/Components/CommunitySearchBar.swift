@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class CommunitySearchBar: UIView {
+class CommunitySearchBar: UIView {
     
     private let searchIcon = UIImageView().then {
         $0.image = UIImage(systemName: "magnifyingglass")

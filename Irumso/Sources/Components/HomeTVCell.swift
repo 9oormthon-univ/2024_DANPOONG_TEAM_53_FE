@@ -53,66 +53,9 @@ class HomeTVCell: UITableViewCell {
     }
     
     
-    private var data: [ImageData] = [ImageData(image: UIImage(named: "imagecopy0"),
-                                               url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411210002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy1"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411210001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy2"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411150001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy3"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411140001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy4"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411040002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy5"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202411010001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy6"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410280001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy7"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410220001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy8"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410170002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy9"),
-                                                                                url: URL(string: " https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410150001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy10"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410110003")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy11"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410110002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy12"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202410020001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy13"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202409260002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy14"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202409260001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy15"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202409090001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy16"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202408290002")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy17"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202408230001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy18"),
-                                                                                url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202408070001")),
-                                     
-                                     ImageData(image: UIImage(named: "imagecopy19"),
-                                               url: URL(string: "https://www.youthcenter.go.kr/jynTips/jynTipsDetail.do?tipsId=202407100001"))]
-    // ImageData 모델 사용
+    private var data: [ImageData] = ImageDatas.datas
+    
+
     private lazy var infiniteData: [ImageData] = {
         var extendedData = data
         extendedData.insert(data.last!, at: 0)  // 앞에 마지막 데이터를 추가
@@ -128,6 +71,7 @@ class HomeTVCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         let initialOffset = homeCollectionView.contentSize.width / 3 - homeCollectionView.bounds.width / 2

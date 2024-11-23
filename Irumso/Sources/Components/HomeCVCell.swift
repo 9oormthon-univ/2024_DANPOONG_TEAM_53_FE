@@ -39,7 +39,9 @@ class HomeCVCell: UICollectionViewCell {
     }
     @objc private func imageViewDidTapped() {
         guard let url = self.url else { return }
-        didTapImageView?(url) // 클로저 호출로 URL 전달
+        let userInfo: [String: Any] = ["url": url]
+        NotificationCenter.default.post(name: Notification.Name("ImageTappedNotification"), object: nil, userInfo: userInfo)
+
     }
     
 }
