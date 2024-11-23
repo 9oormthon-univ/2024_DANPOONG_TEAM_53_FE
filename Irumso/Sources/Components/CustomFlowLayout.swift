@@ -16,7 +16,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         self.scrollDirection = .horizontal
         self.minimumLineSpacing = 40
-        itemSize = CGSize(width: 200, height: 100)
+        itemSize = CGSize(width: 120, height: 100)
     }
     
     required init?(coder: NSCoder) {

@@ -197,8 +197,8 @@ extension MyPageVC {
         
         self.userImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(30)
-            $0.width.height.equalTo(150)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            $0.width.height.equalTo(130)
         }
         
         self.userNameLabel.snp.makeConstraints {
@@ -287,9 +287,7 @@ extension MyPageVC {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(self.label3.snp.bottom).offset(10)
         }
-        
-       
-        
+
         self.label4.snp.makeConstraints {
             $0.leading.equalTo(self.label3)
             $0.top.equalTo(self.label3.snp.bottom).offset(25)
@@ -300,9 +298,11 @@ extension MyPageVC {
             $0.trailing.equalToSuperview().offset(-15)
             $0.width.height.equalTo(20)
         }
+        
         self.logoutButton.snp.makeConstraints {
             $0.trailing.equalTo(self.baseView2.snp.trailing)
             $0.top.equalTo(self.baseView2.snp.bottom).offset(30)
         }
+        
     }
 }

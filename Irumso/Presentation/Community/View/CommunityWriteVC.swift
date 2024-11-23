@@ -48,12 +48,22 @@ final class CommunityWriteVC: UIViewController {
     
     private let mainTextLabel: UILabel = UILabel().then {
         $0.text = "본문"
-        
+        $0.font = UIFont.customFont(.goormSans500, size: 20)
+        $0.textColor = .black
     }
     
+    private lazy var mainTextView: UITextView = UITextView().then {
+        $0.isScrollEnabled = false
+        $0.backgroundColor = UIColor(hexCode: "D3EAD1")
+        $0.layer.cornerRadius = 4
+    }
     
-    
-    
+    private lazy var writeButton: UIButton = UIButton().then {
+        $0.backgroundColor = UIColor(hexCode: "63B85F")
+        $0.setTitle("올리기", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.layer.cornerRadius = 8
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +74,10 @@ final class CommunityWriteVC: UIViewController {
                                       self.serviceTypeSelectionLabel,
                                       self.serviceTypeSelectionView,
                                       self.addPictureLabel,
-                                      self.addPictureButton])
+                                      self.addPictureButton,
+                                      self.mainTextView,
+                                      self.mainTextLabel,
+                                      self.writeButton])
         
         self.serviceTypeSelectionView.addSubview(self.downTriangleImageView)
         
@@ -104,6 +117,24 @@ final class CommunityWriteVC: UIViewController {
             $0.leading.trailing.equalTo(self.titleInputTextField)
             $0.height.equalTo(30)
         }
+        
+        self.mainTextLabel.snp.makeConstraints {
+            $0.leading.trailing.equalTo(self.addPictureLabel)
+            $0.top.equalTo(self.addPictureButton.snp.bottom).offset(10)
+            $0.height.equalTo(30)
+        }
+        
+        self.mainTextView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(self.addPictureButton)
+            $0.top.equalTo(self.mainTextLabel.snp.bottom).offset(10)
+            $0.height.equalTo(300)
+        }
+        
+        self.writeButton.snp.makeConstraints {
+            $0.leading.trailing.equalTo(self.mainTextView)
+            $0.top.equalTo(self.mainTextView.snp.bottom).offset(20)
+            $0.height.equalTo(50)
+        }
       
     }
     
@@ -116,32 +147,5 @@ final class CommunityWriteVC: UIViewController {
 extension CommunityWriteVC {
     private func configureCommunityWritingVC() {
         self.view.backgroundColor = .white
-    }
-}
-import SwiftUI
-
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-
-
-import SwiftUI
-
-struct VCPreView: PreviewProvider {
-    static var previews: some View {
-        CommunityWriteVC().toPreview()
     }
 }

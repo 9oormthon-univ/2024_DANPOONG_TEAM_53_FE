@@ -25,8 +25,15 @@ class CommunityCell: UITableViewCell {
         $0.textAlignment = .left
     }
     
-    private let serviceNameLabel: UILabel = UILabel().then {
-        $0.text = "지원금명 테스트입니다."
+    private let dateLabel: UILabel = UILabel().then {
+        $0.text = "2024-11-21"
+        $0.font = UIFont.customFont(.goormSans500, size: 14)
+        $0.textColor = .black
+        $0.textAlignment = .left
+    }
+    
+    private let userNameLabel: UILabel = UILabel().then {
+        $0.text = "2024-11-21"
         $0.font = UIFont.customFont(.goormSans500, size: 14)
         $0.textColor = .black
         $0.textAlignment = .left
@@ -70,7 +77,7 @@ class CommunityCell: UITableViewCell {
 extension CommunityCell {
     private func configureCommunityCellUI() {
         self.addSubview(self.contentView)
-        [self.communityThumbnailImageView, self.communityTitleLabel, self.serviceNameLabel, self.heartImageView, self.heartCount, self.commentImageView, self.commentCount].forEach { self.contentView.addSubview($0) }
+        [self.communityThumbnailImageView, self.communityTitleLabel, self.dateLabel, self.heartImageView, self.heartCount, self.commentImageView, self.commentCount, self.userNameLabel].forEach { self.contentView.addSubview($0) }
         
         self.contentView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
@@ -86,7 +93,12 @@ extension CommunityCell {
             $0.trailing.equalToSuperview().offset(-100)
         }
         
-        self.serviceNameLabel.snp.makeConstraints {
+        self.userNameLabel.snp.makeConstraints {
+            $0.leading.equalTo(self.communityThumbnailImageView.snp.trailing).offset(10)
+            $0.top.equalTo(self.communityTitleLabel.snp.bottom).offset(5)
+        }
+        
+        self.dateLabel.snp.makeConstraints {
             $0.bottom.equalTo(self.communityThumbnailImageView.snp.bottom).offset(-5)
             $0.leading.equalTo(self.communityThumbnailImageView.snp.trailing).offset(10)
             $0.trailing.equalToSuperview().offset(-100)

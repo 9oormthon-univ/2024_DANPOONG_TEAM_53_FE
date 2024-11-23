@@ -12,8 +12,17 @@ class RecommendVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .gray
+        
 
     }
 
+}
+
+
+extension RecommendVC {
+    private func configureRecommendVC() {
+        self.view.backgroundColor = .white
+        
+        
+    }
 }

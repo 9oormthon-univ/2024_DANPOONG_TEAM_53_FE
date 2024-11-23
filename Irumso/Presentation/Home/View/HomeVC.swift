@@ -16,12 +16,16 @@ final class HomeVC: UIViewController {
         $0.register(HomeTVCell.self, forCellReuseIdentifier: HomeTVCell.reuseIdentifier)
     }
     
+    
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureHomeVCUI()
     }
 
+    
+    
     
     //MARK: - Actions
     @objc func showDetailButtonDidTapped(_ sender: UIButton) {
@@ -58,7 +62,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 150
+            return 130
         case 1, 2:
             return 35
         default:
@@ -87,6 +91,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cell.configureHomeTVCellForFirstSection()
+        
             return cell
         case 1:
             cell.configureHomeTVCell()
@@ -149,7 +154,8 @@ extension HomeVC {
         self.view.backgroundColor = .white
         self.view.addSubview(self.homeTableView)
         self.homeTableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(-10)
         }
         
     }

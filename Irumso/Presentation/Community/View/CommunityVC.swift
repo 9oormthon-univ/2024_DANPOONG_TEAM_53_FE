@@ -42,10 +42,13 @@ final class CommunityVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.isTabBarHidden = false
-        
     }
+    
     @objc private func communityWriteButtonDidTapped() {
         print("Debug: \(#function)")
+        let communityWriteVC = CommunityWriteVC()
+        communityWriteVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(communityWriteVC, animated: true)
     }
 
 
