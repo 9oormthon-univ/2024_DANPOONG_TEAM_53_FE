@@ -15,6 +15,7 @@ final class ServiceListVC: UIViewController {
         $0.delegate = self
         $0.dataSource = self
         $0.rowHeight = 150
+        $0.separatorStyle = .none
         $0.register(ServiceListCell.self, forCellReuseIdentifier: ServiceListCell.reuseIdentifier)
     }
 
@@ -40,7 +41,7 @@ extension ServiceListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceListCell.reuseIdentifier, for: indexPath) as! ServiceListCell
-        
+        cell.selectionStyle = .none
         return cell
     }
 }

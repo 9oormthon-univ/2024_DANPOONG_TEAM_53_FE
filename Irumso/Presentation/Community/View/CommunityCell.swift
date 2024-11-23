@@ -11,9 +11,9 @@ class CommunityCell: UITableViewCell {
     static let reuseIdentifier: String = "CommunityCell"
     
     private let communityThumbnailImageView: UIImageView = UIImageView().then {
-        $0.image = UIImage(systemName: "person.fill")
+        $0.image = UIImage(named: "defaultImage")
         $0.contentMode = .scaleAspectFit
-        $0.layer.cornerRadius = 5
+        $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.lightGray.cgColor
     }

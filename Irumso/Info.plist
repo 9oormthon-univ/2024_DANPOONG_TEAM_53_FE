@@ -7,9 +7,6 @@
 		<string>goorm-sans-bold.otf</string>
 		<string>goorm-sans-medium.otf</string>
 		<string>goorm-sans-regular.otf</string>
-		<string>goorm-sans-regular.ttf</string>
-		<string>goorm-sans-medium.ttf</string>
-		<string>goorm-sans-bold.ttf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

@@ -11,7 +11,7 @@ class RecommendVC: UIViewController {
     
     private let commentLabel: UILabel = UILabel().then {
         $0.text = "나와 딱 맞는 지원금을\n추천받아보세요!"
-        $0.font = UIFont.customFont(.goormSans700, size: 30)
+        $0.font = UIFont.customFont(.goormSans500, size: 15)
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.textColor = .black

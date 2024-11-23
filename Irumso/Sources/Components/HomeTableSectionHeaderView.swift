@@ -17,7 +17,7 @@ final class HomeTableSectionHeaderView: UIView {
     
     let sectionTitleLabel: UILabel = UILabel().then {
         $0.text = "테스트입니다."
-        $0.font = UIFont.customFont(.goormSans700, size: 35)
+        $0.font = UIFont.customFont(.goormSans500, size: 14)
         
     }
     
@@ -26,6 +26,7 @@ final class HomeTableSectionHeaderView: UIView {
         $0.setTitleColor(UIColor.gray, for: .normal)
         $0.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         $0.tintColor = .gray
+        $0.titleLabel?.font = UIFont.customFont(.goormSans400, size: 14)
         $0.semanticContentAttribute = .forceRightToLeft // 이미지가 오른쪽에 오도록 강제
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8) // 간격 조정
 //        $0.addTarget(self, action: #selector(showDetailButtonDidTapped), for: .touchUpInside)

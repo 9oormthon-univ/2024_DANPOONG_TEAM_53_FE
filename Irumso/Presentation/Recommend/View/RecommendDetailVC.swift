@@ -23,6 +23,7 @@ class RecommendDetailVC: UIViewController {
         $0.register(ServiceListCell.self, forCellReuseIdentifier: ServiceListCell.reuseIdentifier)
         $0.backgroundColor = .white
         $0.rowHeight = 150
+        $0.separatorStyle = .none
     }
 
     

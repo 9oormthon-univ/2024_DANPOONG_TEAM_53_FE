@@ -150,6 +150,7 @@ extension ServiceListCell {
         self.viewCount.isHidden = true
         self.baseView.backgroundColor = UIColor(hexCode: "D0E4CE")
         self.heartCount.isHidden = true
+        self.layer.borderColor = .none
         self.heartImageView.snp.remakeConstraints {
             $0.trailing.equalToSuperview().offset(-10)
             $0.top.equalToSuperview().offset(10)

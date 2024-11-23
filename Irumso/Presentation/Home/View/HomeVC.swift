@@ -50,7 +50,7 @@ final class HomeVC: UIViewController {
             
         case 2:
             let serviceListVC = ServiceListVC()
-            serviceListVC.title = "관심을 많이 가진 지원금 정보"
+            serviceListVC.title = "많이 관심가진 지원금"
             serviceListVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(serviceListVC, animated: true)
         default:
@@ -107,7 +107,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             cell.serviceNameLabel.text = "테스트입니다." + String(indexPath.row + 1)
             cell.countLabel.text = String(indexPath.row + 1) + "k"
             cell.indexLabel.text = String(indexPath.row + 1)
-            
+            cell.selectionStyle = .none
             return cell
         case 2:
             cell.configureHomeTVCell()
@@ -115,6 +115,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             cell.countLabel.text = String(indexPath.row + 1) + "k"
             cell.indexLabel.text = String(indexPath.row + 1)
             cell.cellImageView.image = UIImage(systemName: "heart")
+            cell.selectionStyle = .none
             return cell
         default:
             return cell

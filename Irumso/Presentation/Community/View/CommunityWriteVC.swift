@@ -12,6 +12,9 @@ final class CommunityWriteVC: UIViewController {
     private lazy var titleInputTextField: UITextField = UITextField().then {
         $0.backgroundColor = .white
         $0.placeholder = "제목을 적어주세요."
+        $0.layer.addBorder([.bottom], color: .black, width: 1)
+        $0.frame.size.width = 200
+        $0.frame.size.height = 30
     }
     
     private let serviceTypeSelectionLabel: UILabel = UILabel().then {
@@ -82,7 +85,7 @@ final class CommunityWriteVC: UIViewController {
         self.serviceTypeSelectionView.addSubview(self.downTriangleImageView)
         
         self.titleInputTextField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().offset(120)
             $0.leading.equalToSuperview().offset(40)
             $0.trailing.equalToSuperview().offset(-40)
             $0.height.equalTo(30)
