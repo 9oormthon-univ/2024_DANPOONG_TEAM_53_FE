@@ -22,6 +22,8 @@ final class HomeTableSectionHeaderView: UIView {
         $0.tintColor = .gray
         $0.semanticContentAttribute = .forceRightToLeft // 이미지가 오른쪽에 오도록 강제
         $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8) // 간격 조정
+        $0.addTarget(self, action: #selector(showDetailButtonDidTapped), for: .touchUpInside)
+        
     }
     
     override init(frame: CGRect) {
@@ -33,6 +35,27 @@ final class HomeTableSectionHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func showDetailButtonDidTapped() {
+        print("Debug: \(#function)")
+        
+    }
+    
+    
+    func updateSectionHeaderViewConstraints() {
+        self.showDetailButton.removeFromSuperview()
+        
+        self.sectionTitleLabel.snp.remakeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+            $0.height.equalTo(30)
+            $0.trailing.equalToSuperview().offset(-10)
+        }
+    }
+    
+}
+
+
+extension HomeTableSectionHeaderView {
     private func configureSectionHeaderView() {
         self.addSubviews(views: [self.sectionTitleLabel, self.showDetailButton])
         self.backgroundColor = .white
@@ -52,18 +75,4 @@ final class HomeTableSectionHeaderView: UIView {
         }
         
     }
-    
-    func updateSectionHeaderViewConstraints() {
-        self.showDetailButton.removeFromSuperview()
-        
-        self.sectionTitleLabel.snp.remakeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
-            $0.height.equalTo(30)
-            $0.trailing.equalToSuperview().offset(-10)
-        }
-    }
-    
 }
-
-
