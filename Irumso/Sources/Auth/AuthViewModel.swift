@@ -17,6 +17,7 @@ final class AuthViewModel {
         print("authVM init()")
     }
     
+
 //    var kakaoToken: OAuthToken? {
 //        didSet {
 //            guard let kakaoToken = self.kakaoToken else { return }
@@ -53,7 +54,7 @@ final class AuthViewModel {
                     print("LoginWithKakaoAccount() success.")
                     
                     // 회원가입 성공 시 토큰 저장
-                    UserDefaults.standard.set(oauthToken, forKey: "accessToken")
+                    UserDefaults.standard.set(oauthToken, forKey: "kakaoToken")
                     // 사용자 정보 불러오기
                     self.getUserInfo()
                     continuation.resume(returning: true)
@@ -95,24 +96,27 @@ final class AuthViewModel {
         }
     }
     
-    func checkToken() {
+    func checkToken(completion: @escaping ((Bool) -> Void)) {
         if (AuthApi.hasToken()) {
             UserApi.shared.accessTokenInfo { (_, error) in
                 if let error = error {
                     if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true  {
                         // 로그인 필요
-                    }
-                    else {
+                        completion(false)
+                    } else {
                         // 기타 에러
+                        completion(false)
                     }
-                }
-                else {
+                } else {
                     // 토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
                     print("checkToken() success.")
+                    self.getUserInfo()
+                    completion(true)
                 }
             }
         } else {
             // 로그인 필요
+            completion(false)
         }
     }
     
@@ -135,7 +139,7 @@ final class AuthViewModel {
                 print(name)
                 print("이메일")
                 print(email)
-                print("프로필 이미지")
+                print("프로필 이미지 URL")
                 print(profileImageUrl)
                 print("닉네임")
                 print(nickname)

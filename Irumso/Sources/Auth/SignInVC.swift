@@ -19,12 +19,20 @@ final class SignInVC: UIViewController {
     }
     
     
+
     private let authViewModel = AuthViewModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureSignInVC()
+        authViewModel.checkToken { hasToken in
+            if hasToken {
+                let homeVC = HomeVC()
+                self.navigationController?.pushViewController(homeVC, animated: true)
+            } else {
+                self.configureSignInVC()
+            }
+        }
     }
     
 
@@ -71,3 +79,4 @@ extension SignInVC {
     }
     
 }
+

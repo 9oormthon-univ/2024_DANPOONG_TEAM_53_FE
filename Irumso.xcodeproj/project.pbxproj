@@ -11,13 +11,13 @@
 		21FBE6192CEAEA67002927EE /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE6182CEAEA67002927EE /* KakaoSDKAuth */; };
 		21FBE61B2CEAEA67002927EE /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE61A2CEAEA67002927EE /* KakaoSDKCommon */; };
 		21FBE61D2CEAEA67002927EE /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 21FBE61C2CEAEA67002927EE /* KakaoSDKUser */; };
+		884FFB632CEB80B200780BDA /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 884FFB622CEB80B200780BDA /* Config.xcconfig */; };
 		884FFB662CEB80ED00780BDA /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 884FFB652CEB80ED00780BDA /* Then */; };
 		884FFB692CEB80FC00780BDA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 884FFB682CEB80FC00780BDA /* SnapKit */; };
-		8874F47B2CEE08B6000D4CFF /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8874F47A2CEE08B6000D4CFF /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8874F47A2CEE08B6000D4CFF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		884FFB622CEB80B200780BDA /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		88B158952CEA422200BA1BD8 /* Irumso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Irumso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,7 +62,7 @@
 		88B1588C2CEA422200BA1BD8 = {
 			isa = PBXGroup;
 			children = (
-				8874F47A2CEE08B6000D4CFF /* Config.xcconfig */,
+				884FFB622CEB80B200780BDA /* Config.xcconfig */,
 				88B158972CEA422200BA1BD8 /* Irumso */,
 				88B158962CEA422200BA1BD8 /* Products */,
 			);
@@ -151,7 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8874F47B2CEE08B6000D4CFF /* Config.xcconfig in Resources */,
+				884FFB632CEB80B200780BDA /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +170,7 @@
 /* Begin XCBuildConfiguration section */
 		88B158A92CEA422400BA1BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 884FFB622CEB80B200780BDA /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -236,6 +237,7 @@
 		};
 		88B158AB2CEA422400BA1BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 884FFB622CEB80B200780BDA /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

@@ -28,7 +28,7 @@ extension MainTabbar {
     private func configureTabbar() {
         let appearanceTabbar = UITabBarAppearance()
         appearanceTabbar.configureWithOpaqueBackground()
-        appearanceTabbar.backgroundColor = UIColor.white
+        appearanceTabbar.backgroundColor = UIColor(hexCode: "63B85F")
         appearanceTabbar.shadowColor = UIColor.lightGray
 
         if #available(iOS 15.0, *) {
@@ -36,8 +36,9 @@ extension MainTabbar {
         }
             
         self.tabBar.standardAppearance = appearanceTabbar
-        self.tabBar.tintColor = UIColor(named: "color1")
-        self.tabBar.backgroundColor = .white
+        self.tabBar.tintColor = .white
+        self.tabBar.unselectedItemTintColor = UIColor(hexCode: "C6F4C3") // 예: 연한 회색
+
     }
     
     private func configureTabbarAttribute() {
@@ -50,10 +51,13 @@ extension MainTabbar {
                                               image: UIImage(systemName: "checkmark.circle"),
                                               selectedImage: UIImage(systemName: "checkmark.circle.fill"))
         
-        let communityVC = self.createNavController(for: RecommendVC(),
-                                              title: "게시판",
+        let communityVC = self.createNavController(for: CommunityVC(),
+                                              title: "소근소근",
                                               image: UIImage(systemName: "list.dash"),
                                               selectedImage: UIImage(systemName: "list.dash"))
+        
+        communityVC.navigationItem.largeTitleDisplayMode = .always
+        
         
         let myPageVC = self.createNavController(for: MyPageVC(),
                                                 title: "마이페이지",
@@ -68,6 +72,7 @@ extension MainTabbar {
         let navController = UINavigationController(rootViewController:  rootViewController)
         navController.navigationBar.isTranslucent = false
         navController.navigationBar.backgroundColor = .white
+        navController.title = "이룸소"
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
         navController.tabBarItem.selectedImage = selectedImage
