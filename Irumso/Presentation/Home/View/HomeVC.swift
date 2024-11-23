@@ -8,21 +8,22 @@
 import UIKit
 
 final class HomeVC: UIViewController {
-    
+    //MARK: - Properties
     private lazy var homeTableView: UITableView = UITableView(frame: .zero, style: .plain).then {
         $0.delegate = self
         $0.dataSource = self
         $0.separatorStyle = .none
         $0.register(HomeTVCell.self, forCellReuseIdentifier: HomeTVCell.reuseIdentifier)
-        
     }
     
-
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureHomeVCUI()
     }
 
+    
+    //MARK: - Actions
     @objc func showDetailButtonDidTapped(_ sender: UIButton) {
         print("Debug: \(#function)")
         switch sender.tag {
