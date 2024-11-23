@@ -22,18 +22,32 @@ final class ServiceDetailVC: UIViewController {
         $0.setTitle("지원대상", for: .normal)
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 16)
+        $0.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
     
-    private let selectionStandardButton: UIButton = UIButton().then {
+    private let targetForServiceBottomView = UIView().then {
+        $0.backgroundColor = UIColor(hexCode: "EBEBED")
+    }
+    
+    private lazy var selectionStandardButton: UIButton = UIButton().then {
         $0.setTitle("선정기준", for: .normal)
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 16)
+        $0.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    }
+    
+    private let selectionStandardBottomView = UIView().then {
+        $0.backgroundColor = UIColor(hexCode: "EBEBED")
     }
     
     private let seviceContentButton: UIButton = UIButton().then {
         $0.setTitle("지원내용", for: .normal)
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 16)
+        $0.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    }
+    private let serviceContentBottomView = UIView().then {
+        $0.backgroundColor = UIColor(hexCode: "EBEBED")
     }
     
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [targetForServiceButton, selectionStandardButton, seviceContentButton]).then {
@@ -53,12 +67,42 @@ final class ServiceDetailVC: UIViewController {
       
     }
     
-
+    @objc func imageButtonTapped() {
+        //북마크
+        
+    }
     
+    @objc func buttonTapped(_ sender: UIButton) {
+        switch sender.currentTitle {
+        case "지원대상":
+            self.targetForServiceBottomView.backgroundColor = .black
+            self.selectionStandardBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.serviceContentBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.serviceDetailTextView.text = "지원대상"
+        case "선정기준":
+            self.targetForServiceBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.selectionStandardBottomView.backgroundColor = .black
+            self.serviceContentBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.serviceDetailTextView.text = "선정기준~~!~!~"
+        case "지원내용":
+            self.targetForServiceBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.selectionStandardBottomView.backgroundColor = UIColor(hexCode: "EBEBED")
+            self.serviceContentBottomView.backgroundColor = .black
+            self.serviceDetailTextView.text = "지원내용 블라블바르아른아른아르"
+        default:
+            break
+            
+        }
+    }
 }
 
 extension ServiceDetailVC {
     private func configureServiceDetailVC() {
+        let imageButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(imageButtonTapped))
+        
+        // 네비게이션 바에 추가
+        navigationItem.rightBarButtonItem = imageButton
+        
         self.view.backgroundColor = .white
         self.title = "지원금 상세 정보"
         self.view.addSubview(self.serviceDetailScrollView)
@@ -78,10 +122,11 @@ extension ServiceDetailVC {
         self.serviceContentView.addSubviews(views: [
             self.serviceDetailTopView,
             self.buttonStackView,
-            self.serviceDetailTextView
-            
-            
-        ])
+            self.serviceContentBottomView,
+            self.selectionStandardBottomView,
+            self.targetForServiceBottomView,
+            self.serviceDetailTextView])
+        
         self.serviceDetailScrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
@@ -106,9 +151,31 @@ extension ServiceDetailVC {
             $0.height.equalTo(45)
         }
         
-        self.serviceDetailTextView.snp.makeConstraints {
+        self.targetForServiceBottomView.snp.makeConstraints {
             $0.top.equalTo(self.buttonStackView.snp.bottom)
-            $0.leading.trailing.equalTo(self.serviceContentView)
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(2)
+            $0.width.equalTo(self.view.frame.width/3)
+        }
+        
+        self.selectionStandardBottomView.snp.makeConstraints {
+            $0.top.equalTo(self.buttonStackView.snp.bottom)
+            $0.leading.equalTo(self.targetForServiceButton.snp.trailing)
+            $0.height.equalTo(2)
+            $0.width.equalTo(self.view.frame.width/3)
+        }
+        
+        self.serviceContentBottomView.snp.makeConstraints {
+            $0.top.equalTo(self.buttonStackView.snp.bottom)
+            $0.leading.equalTo(self.selectionStandardBottomView.snp.trailing)
+            $0.height.equalTo(2)
+            $0.width.equalTo(self.view.frame.width/3)
+        }
+        
+        self.serviceDetailTextView.snp.makeConstraints {
+            $0.top.equalTo(self.buttonStackView.snp.bottom).offset(2)
+            $0.leading.equalTo(self.serviceContentView.snp.leading).offset(20)
+            $0.trailing.equalTo(self.serviceContentView.snp.trailing).offset(-20)
             $0.height.equalTo(500)
         }
         
