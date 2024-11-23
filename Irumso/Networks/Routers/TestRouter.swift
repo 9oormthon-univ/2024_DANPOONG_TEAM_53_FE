@@ -1,5 +1,5 @@
 //
-//  ExampleRouter.swift
+//  TestRouter.swift
 //  Irumso
 //
 //  Created by dezxcvb on 11/18/24.
@@ -7,12 +7,12 @@
 
 import Alamofire
 
-enum ExampleRouter {
+enum TestRouter {
     case getExamples
-    case addExample(AddExampleRequest)
+    case addExample(param1: String, param2: String, image: String)
 }
 
-extension ExampleRouter: TargetType {
+extension TestRouter: TargetType {
     var baseUrl: String {
         return Constant.baseUrl
     }
@@ -32,23 +32,19 @@ extension ExampleRouter: TargetType {
             return "/examples"
         case .addExample:
             return "/examples"
-//        case let .deleteExample(request):
-//            return "/examples/\(request.exampleId)"
         }
     }
 
     var header: HTTPHeaders {
-        return Constant.header
+        return Constant.headers
     }
 
     var parameter: RequestParams? {
         switch self {
         case .getExamples:
             return nil
-        case let .addExample(request):
-            return .body(request)
-//        case .deleteExample:
-//            return nil
+        case let .addExample(param1, param2, _):
+            return .query(["title": param1, "content": param2])
         }
     }
 
@@ -56,8 +52,17 @@ extension ExampleRouter: TargetType {
         switch self {
         case .getExamples:
             return URLEncoding.default
-        case .addExample/*, .deleteExample*/:
+        case .addExample:
             return JSONEncoding.default
+        }
+    }
+
+    var body: [String: Any]? {
+        switch self {
+        case let .addExample(_, _, image):
+            return ["image": image]
+        default:
+            return nil
         }
     }
 }

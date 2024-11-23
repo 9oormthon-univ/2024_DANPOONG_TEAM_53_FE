@@ -15,6 +15,7 @@ protocol TargetType: URLRequestConvertible {
     var encoding: ParameterEncoding { get }
     var header: HTTPHeaders { get }
     var path: String { get }
+    var body: [String: Any]? { get }
 }
 
 extension TargetType {
@@ -22,20 +23,21 @@ extension TargetType {
         let url = try baseUrl.asURL()
         var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
         urlRequest.headers = header
+
         switch parameter {
-        case let .query(request):
-            try configQueryParam(for: &urlRequest, with: request)
-        case let .body(request):
-            try configBodyParam(for: &urlRequest, with: request)
+        case let .query(params):
+            try configQueryParam(for: &urlRequest, with: params)
+        case let .body(params):
+            try configRequestBody(for: &urlRequest, with: params)
         case .none:
             break
         }
+
         return urlRequest
     }
-    
-    private func configQueryParam(for urlRequest: inout URLRequest, with request: Encodable?) throws {
-        let params = request?.toDictionary() ?? [:]
-        let queryParams = params.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+
+    private func configQueryParam(for urlRequest: inout URLRequest, with params: [String: Any]?) throws {
+        let queryParams = params?.map { URLQueryItem(name: $0.key, value: "\($0.value)") } ?? []
 
         guard var components = URLComponents(string: urlRequest.url?.absoluteString ?? "") else {
             throw URLError(.badURL)
@@ -43,14 +45,21 @@ extension TargetType {
         components.queryItems = queryParams
         urlRequest.url = components.url
     }
-    
-    private func configBodyParam(for urlRequest: inout URLRequest, with request: Encodable?) throws {
-        let params = request?.toDictionary() ?? [:]
-        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+
+    private func configRequestBody(for urlRequest: inout URLRequest, with params: [String: Any]?) throws {
+        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params ?? [:], options: [])
     }
 }
 
 enum RequestParams {
-    case query(_ parameter: Encodable?)
-    case body(_ parameter: Encodable?)
+    case query(_ parameter: [String: Any]?)
+    case body(_ parameter: [String: Any]?)
+
+    init<T: Encodable>(query parameter: T?) {
+        self = .query(parameter?.toDictionary() ?? [:])
+    }
+
+    init<T: Encodable>(body parameter: T?) {
+        self = .query(parameter?.toDictionary() ?? [:])
+    }
 }

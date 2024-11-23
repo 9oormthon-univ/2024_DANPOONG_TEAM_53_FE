@@ -42,4 +42,3 @@ extension UIColor {
     class var c4: UIColor? { UIColor(named: "Color4") }
     class var c5: UIColor? { UIColor(named:"Color5") }
 }
-
