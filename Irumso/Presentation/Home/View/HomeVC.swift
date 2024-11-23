@@ -23,12 +23,36 @@ final class HomeVC: UIViewController {
         self.configureHomeVCUI()
     }
 
-
+    @objc func showDetailButtonDidTapped(_ sender: UIButton) {
+        print("Debug: \(#function)")
+        switch sender.tag {
+        case 1:
+            print("Debug : ByLike")
+            let serviceListVC = ServiceListVC()
+            serviceListVC.title = "많이 본 지원금 정보"
+            serviceListVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(serviceListVC, animated: true)
+            
+        case 2:
+            print("Debug : ByView")
+            let serviceListVC = ServiceListVC()
+            serviceListVC.title = "관심을 많이 가진 지원금 정보"
+            serviceListVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(serviceListVC, animated: true)
+        default:
+            break
+        }
+        
+    }
 }
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let serviceDetailVC = ServiceDetailVC()
+        serviceDetailVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(serviceDetailVC, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
@@ -80,8 +104,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         default:
             return cell
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -92,10 +114,14 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             homeTableViewSectionHeader.sectionTitleLabel.text = "다양한 종류의 지원금 정보를 찾아보세요!"
             return homeTableViewSectionHeader
         case 1:
+            homeTableViewSectionHeader.showDetailButton.tag = 1
+            homeTableViewSectionHeader.showDetailButton.addTarget(self, action: #selector(showDetailButtonDidTapped(_:)), for: .touchUpInside)
             homeTableViewSectionHeader.sectionTitleLabel.text = "현재 사람들이 많이 본 지원금 정보"
             return homeTableViewSectionHeader
 
         case 2:
+            homeTableViewSectionHeader.showDetailButton.tag = 2
+            homeTableViewSectionHeader.showDetailButton.addTarget(self, action: #selector(showDetailButtonDidTapped(_:)), for: .touchUpInside)
             homeTableViewSectionHeader.sectionTitleLabel.text = "현재 사람들이 관심을 준 지원금 정보"
             return homeTableViewSectionHeader
 

@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class ServiceListByViewVC: UIViewController {
+
+
+final class ServiceListVC: UIViewController {
     
-    private lazy var serviceListTableViewByView: UITableView = UITableView().then { 
+    private lazy var serviceListTableViewByView: UITableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
         $0.rowHeight = 150
@@ -21,14 +23,17 @@ final class ServiceListByViewVC: UIViewController {
         self.configureServiceListByViewVCUI()
 
     }
-    
-
-   
-    
 
 }
 
-extension ServiceListByViewVC: UITableViewDelegate, UITableViewDataSource {
+
+extension ServiceListVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let serviceDetailVC = ServiceDetailVC()
+        serviceDetailVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(serviceDetailVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -38,13 +43,9 @@ extension ServiceListByViewVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
-    
 }
 
-
-extension ServiceListByViewVC {
+extension ServiceListVC {
     private func configureServiceListByViewVCUI() {
         self.view.backgroundColor = .white
         
@@ -56,31 +57,4 @@ extension ServiceListByViewVC {
         
     }
 }
-import SwiftUI
 
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-            
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-
-
-import SwiftUI
-
-struct VCPreView: PreviewProvider {
-    static var previews: some View {
-        ServiceListByViewVC().toPreview()
-    }
-}
