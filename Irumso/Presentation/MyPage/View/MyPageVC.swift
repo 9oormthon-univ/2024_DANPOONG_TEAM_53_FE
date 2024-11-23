@@ -30,12 +30,18 @@ final class MyPageVC: UIViewController {
     }
     
     private lazy var editMyInfomationButton: MyPageButton = MyPageButton(image: UIImage(systemName: "doc.text.fill"),
-                                                                         title: "정보수정")
+                                                                         title: "정보수정").then {
+        $0.addTarget(self, action: #selector(editMyPageButtonDidTapped), for: .touchUpInside)
+    }
     
     private lazy var askButton: MyPageButton = MyPageButton(image: UIImage(systemName: "questionmark.circle.fill"),
-                                                                         title: "문의하기")
+                                                            title: "문의하기").then {
+        $0.addTarget(self, action: #selector(askButtonDidTapped), for: .touchUpInside)
+    }
     
-    private lazy var reviewButton: MyPageButton = MyPageButton(image: UIImage(named: "happy"), title: "리뷰남기기")
+    private lazy var reviewButton: MyPageButton = MyPageButton(image: UIImage(named: "happy"), title: "리뷰남기기").then {
+        $0.addTarget(self, action: #selector(reviewButtonDidTapped), for: .touchUpInside)
+    }
     
     private let baseView1: UIView = UIView().then {
         $0.backgroundColor = .white
@@ -138,7 +144,37 @@ final class MyPageVC: UIViewController {
     }
     
    
-
+    @objc func chevronButtonDidTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            print("Debug: \(sender.tag)")
+        case 2:
+            print("Debug: \(sender.tag)")
+        case 3:
+            print("Debug: \(sender.tag)")
+        case 4:
+            print("Debug: \(sender.tag)")
+        default:
+            break
+        }
+    }
+    
+    @objc func editMyPageButtonDidTapped() {
+        let surveyVC = SurveyVC()
+        //내 설문조사 내용 넘겨주기
+        surveyVC.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(surveyVC, animated: true)
+        
+    }
+    
+    @objc func askButtonDidTapped() {
+        
+    }
+    @objc func reviewButtonDidTapped() {
+        
+    }
+    
 }
 
 
@@ -268,32 +304,5 @@ extension MyPageVC {
             $0.trailing.equalTo(self.baseView2.snp.trailing)
             $0.top.equalTo(self.baseView2.snp.bottom).offset(30)
         }
-    }
-}
-import SwiftUI
-
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-
-
-import SwiftUI
-
-struct VCPreView: PreviewProvider {
-    static var previews: some View {
-        MyPageVC().toPreview()
     }
 }
